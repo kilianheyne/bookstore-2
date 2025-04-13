@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Book Shelf 📚 jede Woche neue Bücher</title>
+    <link rel="shortcut icon" href="./assets/icons/the-book-shelf-favIcon-olive.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body onload="renderBooks(), renderFavBooks()">
+    <header>
+        <img src="./assets/icons/the-book-shelf-logo-olive.png" alt="The Book Shelf-Logo" id="logo">
+    </header>
+    <section>
+        <h2>Deine Favoriten</h2>
+        <div id="fav-container" class="book-shelf">
+
+        </div>
+    </section>
+    <section>
+        <h2>Deine Empfehlungen für diese Woche</h2>
+        <div id="books-container" class="book-shelf">
+            
+        </div>
+    </section>
+    <footer></footer>
+    <script src="script.js"></script>
+</body>
+</html>

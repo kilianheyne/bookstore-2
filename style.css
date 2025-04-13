@@ -1,0 +1,221 @@
+@import url(https://fonts.bunny.net/css?family=work-sans:400,700);
+
+* {
+    padding: 0;
+    margin: 0;
+    position: relative;
+    box-sizing: border-box;
+    text-decoration: none;
+    scroll-behavior: smooth;
+}
+
+html {
+    font-family: "Work Sans", sans-serif;
+    font-size: 10px;
+}
+
+body{
+    background: #f0ebe5;
+}
+
+h2{
+    font-size: 4rem;
+    margin-bottom: 5dvh;
+
+    @media(max-width: 1024px){
+        margin-bottom: 2.5dvh;
+    }
+    @media(max-width: 620px){
+        margin-bottom: 1dvh;
+        font-size: 2.6rem;
+    }
+}
+
+header{
+    padding-top: 1%;
+    padding-left: 5%;
+    padding-right: 5%;
+    margin-bottom: 5dvh;
+
+    @media(max-width: 1024px){
+        margin-bottom: 2.5dvh;
+    }
+    @media(max-width: 620px){
+        margin-bottom: 1dvh;
+
+        img{
+            width: 60%;
+        }
+    }
+}
+
+section{
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.book-shelf{
+    display: flex;
+    flex-wrap: wrap;
+    height: 80%;
+    width: 100%;
+    gap: 2%;
+    
+    .book-card{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 80dvh;
+        width: 32%;
+        gap: 2%;
+        margin-bottom: 5dvh;
+        border-radius: 11px;
+        box-shadow: rgba(0, 0, 0, 0.65) 0px 5px 15px;
+        padding: 1%;
+
+        @media(max-width: 1024px){
+            width: 49%;
+            margin-bottom: 2.5dvh;
+            height: 60dvh;
+        }
+        @media(max-width: 620px){
+            width: 100%;
+            padding: 3%;
+            height: 80dvh;
+        }
+
+        h3{
+            font-size: 2.6rem;
+            text-align: center;
+
+            @media(max-width: 430px){
+                font-size: 2rem;
+            }
+        }
+        .book-img{
+            display: flex; 
+            justify-content: center;
+            width: 100%;
+            
+            img{
+                width: 40%;
+            }
+        }
+        .book-infos{
+            font-size: 1.8rem;
+            width: 100%;
+
+            .book-offer{
+                display: flex; 
+                justify-content:space-between;
+                align-items: center;
+                width: 100%;
+
+                b{
+                    width: 50%;
+                }
+    
+                .book-likes{
+                    display: flex; 
+                    align-items: center;
+                    justify-content: right;
+    
+                    #heart-container{
+                        width: 20%;
+                        margin-left: 3%;
+                        
+                        img{
+                            width: 100%;
+                        }
+                    }
+                }
+            }
+            .book-details{
+                display: flex;
+                flex-direction: column;
+    
+                .detail-row{
+                    display: flex;
+                    width: 100%;
+                    margin-bottom: 1%;
+
+                    @media(max-width: 1230px){
+                        .just-right{
+                            display: flex; 
+                            justify-content: right;
+                        }
+                    }
+                    
+                    span{
+                        width: 50%;
+                    }
+                }
+            }
+        }
+        #comment-section{
+            font-size: 1.8rem;
+            flex-grow: 1;
+            width: 100%;
+            display: flex; 
+            flex-direction: column;
+            max-height: 40%;
+            overflow: hidden;
+            
+            b {
+                margin-bottom: 4%;
+            }
+            .comments-container{
+                overflow-y: auto;
+                flex-grow: 1;
+                border-radius: 11px;
+
+                .single-comment{
+                    background: #B8F0B1;
+                    border-radius: 11px;
+                    padding: 2%;
+                    margin-bottom: 1%;
+                    cursor: default; 
+
+                    .comment-name{
+                        font-weight: bold;
+                    }
+                    .comment-comment{
+                        font-size: 1.6rem;
+                        color: #4E4E4E;
+                    }
+                }
+            }
+        }
+        #user-comment-area{
+            display: flex;
+            align-items: center;
+            gap: 1.5%;
+            width: 100%;
+            background: #A2D2FF; 
+            border-radius: 11px;
+            padding-right: 3%;
+
+            input{
+                height: 5dvh;
+                color: #4E4E4E;
+                flex-grow: 1;
+                border: none;
+                background: transparent;
+                outline: none;
+                padding-left: 5%;
+            }
+            input::placeholder{
+                color: #4E4E4E;
+                font-style: italic;
+            }
+            img{
+                width: 10%;
+            }
+            img:hover{
+                transform: scale(1.1);
+                opacity: 0.8;
+                cursor: pointer;
+            }
+        }
+    }
+}
