@@ -230,9 +230,9 @@ function renderHeartIcon(heartIndex){
     const heartRef = books[heartIndex].liked;
 
     if (heartRef === true) {
-        return `<img src="./assets/icons/liked.png" alt="like" onclick="toggleLike(${heartIndex})">`;
+        return `<img src="./assets/icons/heart-circle-regular-120.png" alt="like" onclick="toggleLike(${heartIndex})">`;
     } else {
-        return `<img src="./assets/icons/not-liked.png" alt="not liked" onclick="toggleLike(${heartIndex})">`;
+        return `<img src="./assets/icons/heart-circle-solid-120.png" alt="not liked" onclick="toggleLike(${heartIndex})">`;
     }
 }
 
