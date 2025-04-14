@@ -1,4 +1,4 @@
-let books = [
+const books = [
     {
         name: "Die Geheimnisse des Ozeans",
         cover: `<img src="./assets/imgs/die-geheimnisse-des-ozeans-cover.png" alt='Buchcover von "Die Geheimnisse des Ozeans"'>`,
@@ -202,21 +202,27 @@ let books = [
     },
 ];
 
-let favBooks = [];
+const favBooks = [];
 
 function renderBooks(){
-    let containerRef = document.getElementById('books-container');
+    const containerRef = document.getElementById('books-container');
     containerRef.innerHTML ="";
     for (let i = 0; i < books.length; i++){
         containerRef.innerHTML += returnBookCard(i, 'notfav');
 
         pushToFavBooks(i);
 
-        let commentsRef = document.getElementById('comments-container-notfav-' + i);
-        
-        for (let j = 0; j < books[i].comments.length; j++){
-            commentsRef.innerHTML += returnComments(i, j);
+        const commentsRef = document.getElementById('comments-container-notfav-' + i);
+
+        if (books[i].comments.length === 0) {
+            commentsRef.innerHTML = returnEmptyCommentSection();
+        } else {
+            for (let j = 0; j < books[i].comments.length; j++){
+                commentsRef.innerHTML += returnComments(i, j);
+            }
         }
+        
+        
     }
 }
 
@@ -245,25 +251,30 @@ function pushToFavBooks(favIndex){
 }
 
 function renderFavBooks(){
-    let favContainerRef = document.getElementById('fav-container');
+    const favContainerRef = document.getElementById('fav-container');
     favContainerRef.innerHTML ="";
     
     for (let f = 0; f < books.length; f++){
         if (books[f].liked === true){
             favContainerRef.innerHTML += returnBookCard(f, 'fav');
         
-            let commentsRef = document.getElementById('comments-container-fav-' + f);
+            const commentsRef = document.getElementById('comments-container-fav-' + f);
             
-            for (let g = 0; g < books[f].comments.length; g++){
-                commentsRef.innerHTML += returnComments(f, g);
+            if (books[f].comments.length === 0) {
+                commentsRef.innerHTML = returnEmptyCommentSection();
+            } else {
+                for (let g = 0; g < books[f].comments.length; g++){
+                    commentsRef.innerHTML += returnComments(f, g);
+                }
             }
+            
         }
     }
 }
 
 function pushComment(commentID, prefix){
     const inputRef = document.getElementById('comment-input-'+ prefix + '-' + commentID);
-    let inputValueRef = inputRef.value;
+    const inputValueRef = inputRef.value;
     books[commentID].comments.push({name: 'Lese-Maus', comment: inputValueRef});
     renderBooks();
     renderFavBooks();

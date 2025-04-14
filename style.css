@@ -99,7 +99,6 @@ section {
 
             img {
                 width: 40%;
-                animation: shimmer 2s infinite;
             }
         }
         .book-infos {
@@ -111,6 +110,7 @@ section {
                 justify-content: space-between;
                 align-items: center;
                 width: 100%;
+                margin-bottom: 3%;
 
                 b {
                     width: 50%;
@@ -134,7 +134,11 @@ section {
                                 0 6px 0 0 #e11d48, 0 8px 0 0 #be123c,
                                 0 8px 16px 0 rgba(244, 114, 182, 0.5);
                             border-radius: 50%;
-                            background: linear-gradient(to bottom right, rgb(244 114 182), rgb(248 113 113));
+                            background: linear-gradient(
+                                to bottom right,
+                                rgb(244 114 182),
+                                rgb(248 113 113)
+                            );
                         }
                         img:hover {
                             transform: translateY(4px);
@@ -183,7 +187,16 @@ section {
             .comments-container {
                 overflow-y: auto;
                 flex-grow: 1;
-                border-radius: 11px;
+
+                .comment-placeholder {
+                    font-style: italic;
+                    color: #6c757d;
+                    background-color: #ffeef8;
+                    padding: 3%;
+                    border-radius: 11px;
+                    text-align: center;
+                    border: 2px dashed #ffaad4;
+                }
 
                 .single-comment {
                     background: #b8f0b1;

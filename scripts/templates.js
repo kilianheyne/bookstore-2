@@ -38,11 +38,15 @@ function returnBookCard(bookIndex, prefix){
                     <img src="./assets/icons/send.png" alt="send comment" id="send-comment-${prefix}-${bookIndex}" onclick="pushComment(${bookIndex}, '${prefix}')"> 
                 </div>
             </div>`
-}
+};
+
+function returnEmptyCommentSection(){
+    return `<div class="comment-placeholder">Psst… dieses Buch wartet auf den ersten Kommentar 📚✨</div>`
+};
 
 function returnComments(booksIndex, commentsIndex){
     return `<div class="single-comment">
                 <div class="comment-name">${books[booksIndex].comments[commentsIndex].name}</div>
                 <div class="comment-comment">${books[booksIndex].comments[commentsIndex].comment}</div>
             </div>`
-}
+};
