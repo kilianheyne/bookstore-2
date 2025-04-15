@@ -121,7 +121,7 @@ section {
                     align-items: center;
                     justify-content: right;
 
-                    #heart-container {
+                    .heart-container {
                         width: 20%;
                         margin-left: 3%;
 

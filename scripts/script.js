@@ -232,13 +232,13 @@ function properPriceDisplay(priceIndex){
     return finalPrice.replace(".", ",") + " " + "€";
 }
 
-function renderHeartIcon(heartIndex){
+function renderHeartIcon(heartIndex, heartPrefix){
     const heartRef = books[heartIndex].liked;
 
     if (heartRef === true) {
-        return `<img src="./assets/icons/heart-circle-regular-120.png" alt="like" onclick="toggleLike(${heartIndex})">`;
+        return `<img src="./assets/icons/heart-circle-regular-120.png" alt="like" onclick="toggleLike(${heartIndex}, '${heartPrefix}')">`;
     } else {
-        return `<img src="./assets/icons/heart-circle-solid-120.png" alt="not liked" onclick="toggleLike(${heartIndex})">`;
+        return `<img src="./assets/icons/heart-circle-solid-120.png" alt="not liked" onclick="toggleLike(${heartIndex}, '${heartPrefix}')">`;
     }
 }
 
@@ -281,13 +281,30 @@ function pushComment(commentID, prefix){
     inputRef.value = "";
 }
 
-function toggleLike(x){
+function toggleLike(x, likePrefix){
+    const likesRefNotFav = document.getElementById(`likes-span-notfav-${x}`);
+    const likesRefFav = document.getElementById(`likes-span-fav-${x}`);
+    const heartRefNotFav = document.getElementById(`heart-container-notfav-${x}`);
+    const heartRefFav = document.getElementById(`heart-container-fav-${x}`);
+
+
     books[x].liked = !books[x].liked;
     if (books[x].liked == true){
-        books[x].likes++;
+        books[x].likes += 1;
+        likesRefNotFav.innerHTML = books[x].likes;
+        if (likesRefFav != null){
+            likesRefFav.innerHTML = books[x].likes;
+        }
     } else {
-        books[x].likes--;
+        books[x].likes -= 1;
+        likesRefNotFav.innerHTML = books[x].likes;
+        if (likesRefFav != null){
+            likesRefFav.innerHTML = books[x].likes;
+        }
     }
-    renderBooks();
+    heartRefNotFav.innerHTML = renderHeartIcon(x, likePrefix);
+    if (heartRefFav != null){
+        heartRefFav.innerHTML = renderHeartIcon(x, likePrefix);
+    }
     renderFavBooks();
 }

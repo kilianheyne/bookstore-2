@@ -8,9 +8,9 @@ function returnBookCard(bookIndex, prefix){
                     <div class="book-offer">
                         <b>${properPriceDisplay(bookIndex)}</b>
                         <div class="book-likes">
-                            <span>${books[bookIndex].likes}</span>
-                            <div id="heart-container">
-                                ${renderHeartIcon(bookIndex)}
+                            <span id="likes-span-${prefix}-${bookIndex}">${books[bookIndex].likes}</span>
+                            <div id="heart-container-${prefix}-${bookIndex}" class="heart-container">
+                                ${renderHeartIcon(bookIndex, prefix)}
                             </div>
                         </div>
                     </div>
