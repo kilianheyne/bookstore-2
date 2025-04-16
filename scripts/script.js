@@ -207,23 +207,23 @@ const favBooks = [];
 function renderBooks(){
     const containerRef = document.getElementById('books-container');
     containerRef.innerHTML ="";
+
     for (let i = 0; i < books.length; i++){
         containerRef.innerHTML += returnBookCard(i, 'notfav');
 
-        pushToFavBooks(i);
+        renderComments(i);
+    }
+}
 
-        const commentsRef = document.getElementById('comments-container-notfav-' + i);
-
-        if (books[i].comments.length === 0) {
+function renderComments(commentsIndex){
+    const commentsRef = document.getElementById('comments-container-notfav-' + commentsIndex);
+        if (books[commentsIndex].comments.length === 0) {
             commentsRef.innerHTML = returnEmptyCommentSection();
         } else {
-            for (let j = 0; j < books[i].comments.length; j++){
-                commentsRef.innerHTML += returnComments(i, j);
+            for (let j = 0; j < books[commentsIndex].comments.length; j++){
+                commentsRef.innerHTML += returnComments(commentsIndex, j);
             }
         }
-        
-        
-    }
 }
 
 function properPriceDisplay(priceIndex){
@@ -258,18 +258,21 @@ function renderFavBooks(){
         if (books[f].liked === true){
             favContainerRef.innerHTML += returnBookCard(f, 'fav');
         
-            const commentsRef = document.getElementById('comments-container-fav-' + f);
-            
-            if (books[f].comments.length === 0) {
-                commentsRef.innerHTML = returnEmptyCommentSection();
-            } else {
-                for (let g = 0; g < books[f].comments.length; g++){
-                    commentsRef.innerHTML += returnComments(f, g);
-                }
-            }
-            
+            renderFavComments(f);
         }
     }
+}
+
+function renderFavComments(favComIndex){
+    const commentsRef = document.getElementById('comments-container-fav-' + favComIndex);
+            
+            if (books[favComIndex].comments.length === 0) {
+                commentsRef.innerHTML = returnEmptyCommentSection();
+            } else {
+                for (let g = 0; g < books[favComIndex].comments.length; g++){
+                    commentsRef.innerHTML += returnComments(favComIndex, g);
+                }
+            }
 }
 
 function pushComment(commentID, prefix){
@@ -281,30 +284,39 @@ function pushComment(commentID, prefix){
     inputRef.value = "";
 }
 
-function toggleLike(x, likePrefix){
-    const likesRefNotFav = document.getElementById(`likes-span-notfav-${x}`);
-    const likesRefFav = document.getElementById(`likes-span-fav-${x}`);
-    const heartRefNotFav = document.getElementById(`heart-container-notfav-${x}`);
-    const heartRefFav = document.getElementById(`heart-container-fav-${x}`);
-
-
+function toggleLike(x, togglePrefix){
     books[x].liked = !books[x].liked;
-    if (books[x].liked == true){
-        books[x].likes += 1;
-        likesRefNotFav.innerHTML = books[x].likes;
+
+    likeCounter(x);
+    toggleHeart(x, togglePrefix);
+    renderFavBooks();
+}
+
+function likeCounter(likeIndex){
+    const likesRefNotFav = document.getElementById(`likes-span-notfav-${likeIndex}`);
+    const likesRefFav = document.getElementById(`likes-span-fav-${likeIndex}`);
+
+    if (books[likeIndex].liked == true){
+        books[likeIndex].likes += 1;
+        likesRefNotFav.innerHTML = books[likeIndex].likes;
         if (likesRefFav != null){
-            likesRefFav.innerHTML = books[x].likes;
+            likesRefFav.innerHTML = books[likeIndex].likes;
         }
     } else {
-        books[x].likes -= 1;
-        likesRefNotFav.innerHTML = books[x].likes;
+        books[likeIndex].likes -= 1;
+        likesRefNotFav.innerHTML = books[likeIndex].likes;
         if (likesRefFav != null){
-            likesRefFav.innerHTML = books[x].likes;
+            likesRefFav.innerHTML = books[likeIndex].likes;
         }
     }
-    heartRefNotFav.innerHTML = renderHeartIcon(x, likePrefix);
+}
+
+function toggleHeart(heartIndex, heartPrefix){
+    const heartRefNotFav = document.getElementById(`heart-container-notfav-${heartIndex}`);
+    const heartRefFav = document.getElementById(`heart-container-fav-${heartIndex}`);
+
+    heartRefNotFav.innerHTML = renderHeartIcon(heartIndex, heartPrefix);
     if (heartRefFav != null){
-        heartRefFav.innerHTML = renderHeartIcon(x, likePrefix);
+        heartRefFav.innerHTML = renderHeartIcon(heartIndex, heartPrefix);
     }
-    renderFavBooks();
 }
